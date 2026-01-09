@@ -46,6 +46,17 @@ export class BoardService {
     return newBoard;
   }
 
+  update(id: number, payload: any) {
+    const boardIdx = this.boards.findIndex((board) => board.id == id);
+
+    if (boardIdx == -1) {
+      throw new NotFoundException(`ID: ${id}에 해당하는 게시글을 찾을 수 없음`);
+    }
+
+    this.boards[boardIdx] = { ...this.boards[boardIdx], ...payload };
+    return this.boards[boardIdx];
+  }
+
   generateId() {
     return this.boards.length == 0
       ? 1
