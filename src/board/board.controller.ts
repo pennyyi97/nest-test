@@ -1,4 +1,4 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { BoardService } from './board.service';
 
 /**
@@ -21,7 +21,7 @@ import { BoardService } from './board.service';
  */
 
 interface Board {
-  id: string;
+  id: number;
   title: string;
   content: string;
 }
@@ -45,8 +45,13 @@ export class BoardController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string): Board {
+  findOne(@Param('id') id: number): Board {
     return this.boardService.findOne(id);
     // return `게시물 조회 id: ${id}`;
+  }
+
+  @Post()
+  create(@Body() data) {
+    return this.boardService.create(data);
   }
 }
