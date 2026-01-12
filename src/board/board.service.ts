@@ -1,5 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { createPostDto } from './dto/create-post';
+import { updatePostDto } from './dto/update-post';
 
 interface Board {
   id: number;
@@ -55,7 +56,7 @@ export class BoardService {
     return newBoard;
   }
 
-  update(id: number, payload: any) {
+  update(id: number, payload: updatePostDto) {
     const boardIdx = this.boards.findIndex((board) => board.id == id);
 
     if (boardIdx == -1) {
