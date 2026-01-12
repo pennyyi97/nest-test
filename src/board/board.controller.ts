@@ -1,5 +1,17 @@
-import { Body, Controller, Get, Param, Post, Put, Delete } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  Put,
+  Delete,
+  UsePipes,
+  ValidationPipe,
+  ParseIntPipe,
+} from '@nestjs/common';
 import { BoardService } from './board.service';
+import { createPostDto } from './dto/create-post';
 
 /**
  * 1. 전체 문맥 이해하기
@@ -51,12 +63,14 @@ export class BoardController {
   }
 
   @Post()
-  create(@Body() data: any) {
+  @UsePipes(new ValidationPipe()) // 해당 핸들러에 파이프 적용
+  create(@Body() data: createPostDto) {
+    // 이곳에 도달했다면 유효성 검사를 통과한 상태 보장
     return this.boardService.create(data);
   }
 
   @Put(':id')
-  update(@Param('id') id: number, @Body() data: any): Board {
+  update(@Param('id', ParseIntPipe) id: number, @Body() data: any): Board {
     return this.boardService.update(id, data);
   }
 
