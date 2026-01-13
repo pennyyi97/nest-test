@@ -3,6 +3,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { TaskModule } from '../tasks/task.module';
+import { UserModule } from '../user/user.module';
 
 @Module({
   imports: [
@@ -29,9 +31,12 @@ import { TypeOrmModule } from '@nestjs/typeorm';
         autoLoadEntities: true,
 
         // DB 스키마 동기화 (운영시 절대 금지)
-        syncronize: config.get('NODE_ENV') == 'develop' ? true : false,
+        synchronize: config.get('NODE_ENV') == 'development' ? true : false,
       }),
     }),
+
+    TaskModule,
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],
