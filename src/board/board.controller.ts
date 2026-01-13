@@ -12,6 +12,7 @@ import {
 } from '@nestjs/common';
 import { BoardService } from './board.service';
 import { createPostDto } from './dto/create-post';
+import { updatePostDto } from './dto/update-post';
 
 /**
  * 1. 전체 문맥 이해하기
@@ -70,7 +71,7 @@ export class BoardController {
   }
 
   @Put(':id')
-  update(@Param('id', ParseIntPipe) id: number, @Body() data: any): Board {
+  update(@Param('id', ParseIntPipe) id: number, @Body() data: updatePostDto): Board {
     return this.boardService.update(id, data);
   }
 
