@@ -6,6 +6,7 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 
 // 애플리케이션의 루트 모듈을 가져옴
 import { AppModule } from './app.module';
+import { HttpExceptionFilter } from './common/filters/http-exception.filter';
 
 // 비동기 함수로 애플리케이션 초기 설정을 시작
 async function bootstrap() {
@@ -42,7 +43,10 @@ async function bootstrap() {
    */
   SwaggerModule.setup('api', app, documentFactory);
 
-  // 환경 변수 PORT가 있다면 해당 포트를 사용하고, 없으면 기본 포트(3000)로 서버를 실행
+  //전역 필터 등록
+  app.useGlobalFilters(new HttpExceptionFilter());
+
+  // 환경 변수 PORT가 있다면 해당 포트를 사용하고, 없으면 기본 포트(4000)로 서버를 실행
   await app.listen(process.env.PORT ?? 4000);
 }
 
