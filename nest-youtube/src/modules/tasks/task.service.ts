@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
@@ -34,8 +34,16 @@ export class TaskService {
   }
 
   // 생성
-  createTask(data: CreateTaskDto) {
+  // DTO를 엔티티 객체로 매핑 한 후 실제 DB에 저장
+  // SQL : INSERT INTO tasks Values ( title, content, category ...)
+  async createTask(data: CreateTaskDto) {
     // Entity  기반으로 설계된 테이블 구조에 맞게 매핑한 후 저장
+    // create(): DTO 데이터를 바탕으로 새로운 엔티티 인스턴스를 생성
+    // save(): 생성된 엔티티 객체를 실제 DB 테이블에 저장
+    const newTask = this.taskRepository.create(data);
+    await this.taskRepository.save(newTask);
+
+    return { message: 'task 생성 완료', statusCode: HttpStatus.CREATED };
   }
 
   // 수정

@@ -20,20 +20,20 @@ export class TaskController {
 
   // 조회
   @Get()
-  async findAll(): Promise<TaskEntity[]> {
-    return await this.taskService.selectAll();
+  findAll(): Promise<TaskEntity[]> {
+    return this.taskService.selectAll();
   }
 
   @Get(':id')
-  async findOne(@Param('id', ParseIntPipe) id: number): Promise<TaskEntity> {
-    return await this.taskService.selectOne(id);
+  findOne(@Param('id', ParseIntPipe) id: number): Promise<TaskEntity> {
+    return this.taskService.selectOne(id);
   }
 
   // 생성
   @Post()
   @UsePipes(new ValidationPipe())
   create(@Body() data: CreateTaskDto) {
-    this.taskService.createTask(data);
+    return this.taskService.createTask(data);
   }
 
   // 수정

@@ -1,6 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
-@Entity('Tasks')
+@Entity('tasks')
 export class TaskEntity {
   @PrimaryGeneratedColumn()
   id: number;
@@ -20,4 +20,10 @@ export class TaskEntity {
 
   @Column()
   username: string;
+
+  @CreateDateColumn({ name: 'create_dt' })
+  createdAt: Date;
+
+  @UpdateDateColumn({ name: 'update_dt' })
+  updatedAt: Date;
 }
