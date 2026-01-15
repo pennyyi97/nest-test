@@ -67,5 +67,12 @@ export class TaskService {
   }
 
   // 삭제
-  deleteTask(id: number) {}
+  // ID를 기준으로 데이터 삭제
+  // SQL : DELETE FROM task WHERE id=?;
+  async deleteTask(id: number) {
+    await this.selectOne(id);
+
+    // delete() : 해당 ID의 데이터 삭제
+    await this.taskRepository.delete(id);
+  }
 }

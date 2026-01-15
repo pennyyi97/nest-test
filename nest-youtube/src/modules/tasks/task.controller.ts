@@ -45,6 +45,6 @@ export class TaskController {
   // 삭제
   @Delete(':id')
   delete(@Param('id', ParseIntPipe) id: number) {
-    this.taskService.deleteTask(id);
+    return this.taskService.deleteTask(id);
   }
 }
