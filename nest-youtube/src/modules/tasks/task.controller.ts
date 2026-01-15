@@ -12,6 +12,7 @@ import {
 } from '@nestjs/common';
 import { TaskService } from './task.service';
 import { CreateTaskDto, UpdateTaskDto } from './dto';
+import { TaskEntity } from './entities/task.entity';
 
 @Controller('tasks')
 export class TaskController {
@@ -19,13 +20,13 @@ export class TaskController {
 
   // 조회
   @Get()
-  findAll() {
-    this.taskService.selectAll();
+  async findAll(): Promise<TaskEntity[]> {
+    return await this.taskService.selectAll();
   }
 
   @Get(':id')
-  findOne(@Param('id', ParseIntPipe) id: number) {
-    this.taskService.selectOne(id);
+  async findOne(@Param('id', ParseIntPipe) id: number): Promise<TaskEntity> {
+    return await this.taskService.selectOne(id);
   }
 
   // 생성
