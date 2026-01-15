@@ -38,8 +38,8 @@ export class TaskController {
 
   // 수정
   @Patch(':id') //일부 데이터만 수정할때 사용
-  update(@Param('id', ParseIntPipe) id: number, @Body() data: UpdateTaskDto) {
-    this.taskService.updateTask(id, data);
+  update(@Param('id', ParseIntPipe) id: number, @Body() data: UpdateTaskDto): Promise<TaskEntity> {
+    return this.taskService.updateTask(id, data);
   }
 
   // 삭제
