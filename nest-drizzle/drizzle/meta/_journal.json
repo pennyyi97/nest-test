@@ -1,0 +1,41 @@
+{
+  "version": "7",
+  "dialect": "mysql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1768526080839,
+      "tag": "0000_closed_darwin",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1768527106849,
+      "tag": "0001_dashing_mister_fear",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1768527449919,
+      "tag": "0002_strange_fabian_cortez",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1768528700209,
+      "tag": "0003_thin_barracuda",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1768533501564,
+      "tag": "0004_cheerful_eternity",
+      "breakpoints": true
+    }
+  ]
+}
