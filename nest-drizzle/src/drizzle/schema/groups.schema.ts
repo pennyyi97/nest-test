@@ -2,7 +2,7 @@ import { mysqlTable, int, varchar, primaryKey } from 'drizzle-orm/mysql-core';
 import { users } from './users.schema';
 import { index } from 'drizzle-orm/mysql-core';
 
-export const groups = mysqlTable('Groups', {
+export const groups = mysqlTable('groups', {
   id: int().autoincrement().primaryKey(),
   name: varchar({ length: 255 }).notNull(),
 });

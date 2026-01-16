@@ -1,0 +1,1 @@
+ALTER TABLE `Users` MODIFY COLUMN `name` varchar(255) NOT NULL;
