@@ -4,7 +4,8 @@ import { drizzle, MySql2Database } from 'drizzle-orm/mysql2';
 import { createPool } from 'mysql2';
 
 export const DRIZZLE = Symbol('drizzle-connection');
-import * as schema from './schema';
+import * as schema from './schema/schema';
+
 @Module({
   providers: [
     {
