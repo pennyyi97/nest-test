@@ -1,6 +1,7 @@
 import { mysqlTable, int, varchar, primaryKey } from 'drizzle-orm/mysql-core';
 import { users } from './users.schema';
 import { index } from 'drizzle-orm/mysql-core';
+import { relations } from 'drizzle-orm';
 
 export const groups = mysqlTable('groups', {
   id: int().autoincrement().primaryKey(),
@@ -19,3 +20,14 @@ export const usersToGroups = mysqlTable(
     userIdIndex: index('userIdIndex').on(table.userId),
   }),
 );
+
+export const usersToGroupRelations = relations(usersToGroups, ({ one }) => ({
+  user: one(users, {
+    fields: [usersToGroups.userId],
+    references: [users.id],
+  }),
+  group: one(groups, {
+    fields: [usersToGroups.groupId],
+    references: [groups.id],
+  }),
+}));

@@ -6,5 +6,8 @@ export const comments = mysqlTable('comments', {
   id: int().autoincrement().primaryKey(),
   text: varchar({ length: 255 }).notNull(),
   authorId: int().references(() => users.id),
-  postId: int().references(() => posts.id),
+  postId: int().references(() => posts.id, {
+    onDelete: 'cascade',
+    onUpdate: 'cascade',
+  }),
 });
